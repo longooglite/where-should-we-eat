@@ -1,0 +1,42 @@
+extends layout
+block content
+    ui-view#content.content
+        #map-wrapper.map-wrapper
+            #map.map
+        #list.list.panel.half-panel(ng-class="{active:activePanel == 'list'}")
+            ul#restaurant-list.panel-list.half-panel-list.block
+                li.restaurant(ng-repeat="result in results")
+                    h3.restaurant-title.res-title(ng-click="findRestaurant(result)") {{result.name}}
+                    div.res-ratings.res-star-ratings
+                        span.restaurant-rating.res-rating.res-star-rating(ng-repeat="star in range(result.starRate) track by $index")
+                    div.res-ratings.res-price-ratings
+                        span.restaurant-rating.res-rating.res-price-rating(ng-repeat="price in range(result.priceRate) track by $index")
+            ul#rec-restaurant-list.panel-list.half-panel-list.block
+                li(ng-repeat="rec in recResults")
+                    h3.restaurant-title.res-title(ng-click="findRestaurant(result)") {{result.name}}
+                    span.restaurant-rating.res-rating.res-star-rating(ng-repeat="star in range(result.starRate) track by $index")
+                    span.restaurant-rating.res-rating.res-price-rating(ng-repeat="price in range(result.priceRate) track by $index")
+            .new-restaurant.block
+                h2.block-header New Restaurant
+                .buttons
+                    #use-coordinates.button(ng-click="newRestaurant('coords')") Use Coordinates
+                    #use-address.button(ng-click="newRestaurant('address')") Use Address
+        #new-restaurant.panel.half-panel.new-restaurant(ng-class="{active:activePanel == 'new'}")
+            form#submit-restaurant.submit-restaurant.half-panel-form.block
+                h2.block-header.form-header.location.location-coords(ng-class="{active:activeLocation == 'coords'}")
+                    | {{coords.latitude}}, {{coords.longitude}}
+                fieldset.address.location.location-address(ng-class="{active:activeLocation == 'address'}")
+                    legend Address
+                    input#street-address.type-element.street-address(placeholder="Street Address", ng-model="rest.street")
+                    input#city-address.type-element.city-address(placeholder="City", ng-model="rest.city")
+                    input#state-address.type-element.state-address(placeholder="State", ng-model="rest.state")
+                input.type-element.rest-name#rest-name(type="text", placeholder="Name", ng-model="rest.name")
+                input.type-element.rest-type#rest-type(type="text", placeholder="Restaurant Type", ng-model="rest.type")
+                input.type-element.rest-eating#rest-eating(type="tel", placeholder="Number of People Eating", ng-model="rest.eating")
+                textarea.rest-notes#rest-notes(placeholder="Notes")
+                include stars
+                include price
+                .buttons
+                    #submit.submit.button(ng-click="restaurantSubmit(rest)") Submit
+                    #cancel.cancel.button Cancel
+    #message-center.bar

@@ -1,0 +1,6 @@
+@mixin text-outline($color: black)
+{
+    text-shadow: 1px 1px 0 $color, 1px -1px 0 $color, -1px 1px 0 $color, -1px -1px 0 $color;
+}
+//generates text-outlines that make any color more visible
+//originally part of _utils.scss, originally used to make memes

@@ -1,0 +1,29 @@
+{
+  "name": "WhereShouldWeEat",
+  "description": "I am sick of trying to pick a place in the car",
+  "version": "0.0.1",
+  "homepage": "No",
+  "license": "EAT",
+  "dependencies": {
+    "angular": "~1.4.0"
+  },
+  "main": "main.js",
+  "keywords": [
+    "ugh",
+    "just",
+    "pick",
+    "some",
+    "place"
+  ],
+  "authors": [
+    "Kirk \"Hoops\" Longuski"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/javascripts/libs",
+    "test",
+    "tests"
+  ]
+}

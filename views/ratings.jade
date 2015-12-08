@@ -1,0 +1,8 @@
+block ratings
+    - var typeClass = type + "-ratings";
+    - var eachClass = type;
+    div(class=typeClass + " ratings")
+        each rating in [1,2,3,4,5]
+            - var click = type+"Rating(" + rating + ")";
+            - var className = "{selected:"+type+"RatingSelected >= "+rating+"}"
+            div(class=eachClass + " rate", ng-click=click, ng-class=className)

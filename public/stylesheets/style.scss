@@ -1,0 +1,247 @@
+@import "utils/flexbox";
+@import "utils/text-shadows";
+@import "utils/colors";
+@import "../fonts/font/css/open-iconic";
+.leaflet-bottom, .leaflet-right
+{
+    display: none !important;
+}
+*
+{
+    box-sizing: border-box;
+}
+body, html
+{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+body
+{
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    @include flexbox();
+    @include flex-direction(column);
+    .bar
+    {
+        @include flex-shrink(1);
+    }
+    .content
+    {
+        height: 100%;
+        @include flexbox();
+        @include flex-grow(1);
+        overflow: hidden;
+        .map-wrapper
+        {
+            height: 100%;
+            @include flexbox();
+            overflow: hidden;
+            .map
+            {
+                .css-icon
+                {
+                    @extend .oi[data-glyph=map-marker];
+                    background: $transparent;
+                    font-family: Icons, sans-serif;
+                    font-size: 35px;
+                }
+                position: relative;
+                @include flex-grow(1);
+            }
+        }
+        .half-panel
+        {
+            display: none;
+            z-index: 0;
+            background: white;
+            @include flex-grow(0);
+            @include flex-direction(column);
+            .block
+            {
+                padding: 0;
+                @include flex-basis(100%);
+                @include flexbox();
+                @include flex-direction(column);
+                .block-header
+                {
+                    text-align: center;
+                }
+            }
+            .half-panel-form
+            {
+                @include flex-grow(1);
+                @include align-items(center);
+                @include align-content(center);
+
+                .form-header, input, textarea, .star-ratings, .buttons
+                {
+                    margin: 20px 0;
+                }
+            }
+            .half-panel-list
+            {
+                list-style-type: none;
+                .restaurant
+                {
+                    @include flexbox();
+                    @include flex-wrap(wrap);
+                    .restaurant-title
+                    {
+                        margin: 5px;
+                        @include flex-basis(100%);
+                        @include flex-shrink(0);
+                    }
+                    .res-ratings
+                    {
+                        @include flex-basis(50%);
+                        .res-rating
+                        {
+                            font-family: Icons, sans-serif;
+                            cursor: pointer;
+                            color: silver;
+                            margin: 2px;
+                            font-size: 1.5em;
+                        }
+                        .res-star-rating
+                        {
+                            color: $starYellow;
+                            @include text-outline($starOUYellow);
+                            @extend .oi[data-glyph=star];
+                        }
+                        .res-price-rating
+                        {
+                            color: $priceGreen;
+                            @include text-outline($priceOUGreen);
+                            @extend .oi[data-glyph=dollar];
+                        }
+                    }
+                }
+            }
+            .buttons
+            {
+                @include flexbox();
+                @include justify-content(space-around);
+                @include align-items(center);
+                flex-basis: 100%;
+                height: 90px;
+                .button
+                {
+                    @include flexbox();
+                    @include flex-grow(0);
+                    @include flex-shrink(0);
+                    @include justify-content(center);
+                    @include align-content(center);
+                    @include align-items(center);
+                    @include flex-basis(40%);
+                    color: gray;
+                    height: 70%;
+                    cursor: pointer;
+                    padding: 10px;
+                    border: solid gray 1px;
+                }
+                .button.active,
+                .button:hover
+                {
+                    color: black;
+                    border-color: black;
+                }
+            }
+        }
+        .panel.active, .half-panel.active
+        {
+            @include flexbox();
+            z-index: 1;
+        }
+        .new-restaurant
+        {
+            form
+            {
+                .location
+                {
+                    display: none;
+                }
+                .location.active
+                {
+                    display: block;
+                }
+            }
+        }
+        .ratings
+        {
+            @include flexbox();
+            padding: 0;
+            .rate
+            {
+                font-family: Icons, sans-serif;
+                cursor: pointer;
+                height: 35px;
+                width: 35px;
+                margin: 10px;
+                font-size: 32px;
+                color: silver;
+                @include text-outline(gray);
+            }
+        }
+        .star-ratings
+        {
+            .star
+            {
+                @extend .oi[data-glyph=star];
+            }
+            .star.selected
+            {
+                color: $starYellow;
+                @include text-outline($starOUYellow);
+            }
+        }
+        .price-ratings
+        {
+            .price
+            {
+                @extend .oi[data-glyph=dollar];
+            }
+            .price.selected
+            {
+                color: $priceGreen;
+                @include text-outline($priceOUGreen);
+            }
+        }
+    }
+}
+body.desktop
+{
+    .content
+    {
+        .map-wrapper
+        {
+            @include flex-grow(0);
+            @include flex-basis(80%);
+        }
+        .half-panel
+        {
+            @include flex-basis(20%);
+        }
+    }
+}
+body.mobile
+{
+    font-size: 2em;
+    .content
+    {
+        height: calc(100% - 3em);
+        .map-wrapper
+        {
+            height: 100%;
+            width: 100%;
+        }
+        .half-panel
+        {
+            width: 100%;
+            position: absolute;
+            overflow: auto;
+            bottom: 0;
+            left: 0;
+            height: 43%;
+        }
+    }
+}

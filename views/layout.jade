@@ -1,0 +1,17 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css')
+        script(src='/javascripts/libs/angular/angular.js')
+        script(src='/javascripts/libs/angular-ui-router/release/angular-ui-router.js')
+        script(src='/javascripts/libs/angular-simple-logger/dist/angular-simple-logger.js')
+        script(src='/javascripts/libs/ui-leaflet/dist/ui-leaflet.js')
+        script(src='/javascripts/libs/leaflet/dist/leaflet.js')
+        script(src='/javascripts/libs/mapbox.js/mapbox.js')
+        script(src='/javascripts/main/main.js')
+        script(src='/javascripts/main/index/index.js')
+    body#body(ng-app="wswe")
+        block content
+    script(src='/javascripts/utils/size.js')
